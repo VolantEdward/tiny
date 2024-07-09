@@ -187,6 +187,10 @@ pgbouncer_escape_auth() {
 pgbouncer_initialize() {
     info "Initializing PgBouncer..."
 
+    if [[ "$PGBOUNCER_LOG_FILE" == "disable" ]]; then
+        PGBOUNCER_LOG_FILE=""
+    fi
+
     # Clean logs, pids and configuration files from previous restarts
     rm -f "$PGBOUNCER_PID_FILE" "$PGBOUNCER_LOG_FILE" "$PGBOUNCER_AUTH_FILE" "$PGBOUNCER_CONF_FILE"
 
